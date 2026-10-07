@@ -1,0 +1,10 @@
+__pycache__
+*.pyc
+.git
+.env
+venv
+data
+README.md
+*.db
+*.db-wal
+*.db-shm

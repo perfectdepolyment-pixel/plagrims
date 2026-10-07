@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: origincheck-api
+    runtime: docker
+    plan: free            # use "starter" for no sleep + a persistent disk
+    healthCheckPath: /health
+    envVars:
+      - key: API_KEY
+        generateValue: true          # copy it from the Render dashboard
+      - key: ALLOWED_ORIGINS
+        value: "https://your-frontend.com,http://localhost:5173"
+      - key: SIMILARITY_THRESHOLD
+        value: "0.80"
+    # Needed on a paid plan so the SQLite file (/data/origincheck.db) survives redeploys:
+    # disk:
+    #   name: kb-data
+    #   mountPath: /data
+    #   sizeGB: 1
